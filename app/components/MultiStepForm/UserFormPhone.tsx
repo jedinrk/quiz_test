@@ -1,5 +1,12 @@
 import React from "react";
 import { FormWrapper } from "./FormWrapper";
+import PhoneNumberInput from "../PhoneInput/PhoneNumberInput";
+import { Archivo } from "next/font/google";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 function UserFormPhone() {
   return (
@@ -33,6 +40,11 @@ function UserFormPhone() {
               Invalid or incorrectly inputted phone numbers can not be notified
               of available units
             </div>
+            <input
+              className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 text-slate-900 text-base font-medium ${archivo.className}`}
+              type="number"
+              maxLength={10} // Limit the input to 17 characters
+            />
           </div>
         </div>
       </div>

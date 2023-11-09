@@ -1,5 +1,11 @@
 import React from "react";
 import { FormWrapper } from "./FormWrapper";
+import { Archivo } from "next/font/google";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 function UserFormEmail() {
   return (
@@ -37,6 +43,11 @@ function UserFormEmail() {
               Invalid or incorrectly inputted email can not receive useful
               information from AZIZI’s team
             </div>
+            <input
+              type="email"
+              placeholder="e-mail"
+              className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 text-slate-900 text-base font-medium ${archivo.className}`}
+            />
           </div>
         </div>
       </div>
