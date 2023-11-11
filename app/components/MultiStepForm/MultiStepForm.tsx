@@ -76,6 +76,7 @@ function MultiStepForm() {
   ]);
 
   function updateData(fields: Partial<FormData>) {
+    console.log("updateData: ", fields)
     setData((prev) => {
       return { ...prev, ...fields };
     });
