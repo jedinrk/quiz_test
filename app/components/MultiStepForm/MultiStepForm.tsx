@@ -21,35 +21,36 @@ const PrevIcon = () => (
   <Image src={prevSvg} alt="Previous Icon" className="mr-[10px]" />
 );
 
-enum PropertyType {
-  "Villa",
-  "Apartment",
-  "Townhouse",
-  "Others",
-}
+// enum PropertyType {
+//   "Villa",
+//   "Apartment",
+//   "Townhouse",
+//   "Others",
+// }
 
-enum TimeSlot {
-  "A" = "9AM-12PM",
-  "B" = "12PM-5PM",
-  "C" = "5PM-9PM",
-  "D" = "9PM-12AM",
-}
+// enum TimeSlot {
+//   "None" = "",
+//   "A" = "9AM-12PM",
+//   "B" = "12PM-5PM",
+//   "C" = "5PM-9PM",
+//   "D" = "9PM-12AM",
+// }
 
 type FormData = {
   phoneNumber: string;
   email: string;
-  timeSlot: TimeSlot;
+  timeSlot: string;
   investedBefore: boolean;
-  propertyType: PropertyType;
+  propertyType: string;
   hasInvestment: boolean;
 };
 
 const initialData: FormData = {
   phoneNumber: "",
   email: "",
-  timeSlot: TimeSlot.A,
+  timeSlot: "",
   investedBefore: false,
-  propertyType: PropertyType.Villa,
+  propertyType: "",
   hasInvestment: false,
 };
 

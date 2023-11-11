@@ -23,24 +23,24 @@ function UserFormPropertyType() {
                 <RadioButtonWithCheckBox
                   label="Villa"
                   isChecked={selectedProperty === "Villa"}
-                  setSelectedProperty={setSelectedProperty}
+                  setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Apartment"
                   isChecked={selectedProperty === "Apartment"}
-                  setSelectedProperty={setSelectedProperty}
+                  setProperty={setSelectedProperty}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
                   label="Townhouse"
                   isChecked={selectedProperty === "Townhouse"}
-                  setSelectedProperty={setSelectedProperty}
+                  setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Other"
                   isChecked={selectedProperty === "Other"}
-                  setSelectedProperty={setSelectedProperty}
+                  setProperty={setSelectedProperty}
                 />
               </div>
             </div>

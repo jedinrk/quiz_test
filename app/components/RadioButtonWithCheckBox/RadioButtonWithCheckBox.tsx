@@ -1,29 +1,26 @@
 import React from "react";
+import Image from "next/image";
+import IconChecked from "../../assets/ic_checked.svg";
+import IconUnchecked from "../../assets/ic_unchecked.svg";
 
 type PropsRadioButton = {
   label: string;
   isChecked: boolean;
-  setSelectedProperty: (property: string) => void;
+  setProperty: (property: string) => void;
 };
 function RadioButtonWithCheckBox({
   label,
   isChecked = false,
-  setSelectedProperty,
+  setProperty,
 }: PropsRadioButton) {
   return (
     <div
       className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${
         isChecked ? "bg-violet-100" : "bg-white"
       } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
+      onClick={() => setProperty(label)}
     >
-      <input
-        id="property-type"
-        type="checkbox"
-        value="Villa"
-        checked={isChecked}
-        onChange={(e) => setSelectedProperty(label)}
-        className="w-4 h-4 left-[2px] top-[2px] accent-violet-700 rounded-sm"
-      ></input>
+      <Image src={isChecked ? IconChecked : IconUnchecked} alt="Icon Checked" />
       <label
         htmlFor="property-type"
         className="text-slate-900 text-base font-normal"
