@@ -17,7 +17,7 @@ function RadioButtonWithCheckBox({
     <div
       className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${
         isChecked ? "bg-violet-100" : "bg-white"
-      } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
+      } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex cursor-pointer`}
       onClick={() => setProperty(label)}
     >
       <Image src={isChecked ? IconChecked : IconUnchecked} alt="Icon Checked" />

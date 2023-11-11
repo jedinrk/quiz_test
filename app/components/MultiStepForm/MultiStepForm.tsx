@@ -99,7 +99,7 @@ function MultiStepForm() {
                   type="button"
                   onClick={back}
                   className="flex grow justify-start py-[20px] px-[100px] rounded-bl-[18px] text-white text-sm font-bold uppercase
-                bg-violet-700 disabled:text-violet-400
+                bg-violet-700 disabled:text-violet-400 cursor-pointer
                 enabled:hover:bg-violet-500 enabled:active:bg-violet-800"
                 >
                   <PrevIcon />
@@ -110,7 +110,7 @@ function MultiStepForm() {
                 type="submit"
                 className={`flex grow justify-end py-[20px] px-[100px] rounded-br-[18px] text-white text-sm font-bold uppercase
                bg-violet-700 disabled:text-violet-400
-               enabled:hover:bg-violet-500 enabled:active:bg-violet-800
+               enabled:hover:bg-violet-500 enabled:active:bg-violet-800 cursor-pointer
               ${isFirstStep ? "rounded-bl-[18px]" : ""}`}
               >
                 {isLastStep ? "Finish This Quiz" : "Next"}
