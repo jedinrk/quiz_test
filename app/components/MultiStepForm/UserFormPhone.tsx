@@ -8,7 +8,7 @@ const archivo = Archivo({
   display: "swap",
 });
 
-function UserFormPhone() {
+function UserFormPhone({ phoneNumber, updateData }: any) {
   return (
     <FormWrapper
       step="01"
@@ -43,6 +43,8 @@ function UserFormPhone() {
             <input
               className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 text-slate-900 text-base font-medium ${archivo.className}`}
               type="number"
+              value={phoneNumber}
+              onChange={(e) => updateData({ phoneNumber: e.target.value })}
               maxLength={10} // Limit the input to 17 characters
             />
           </div>

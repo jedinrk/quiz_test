@@ -1,7 +1,7 @@
 import React from "react";
 import { FormWrapper } from "./FormWrapper";
 
-function UserFormTimeSlot() {
+function UserFormTimeSlot({ timeSlot, updateData }: any) {
   return (
     <FormWrapper
       step="03"
@@ -38,24 +38,24 @@ function UserFormTimeSlot() {
             <div className="mt-[32px] flex flex-col">
               <div className="mb-[10px] flex justify-between">
                 <div className="w-[270px] h-[50px] px-[50px] py-3.5 bg-white rounded-[20px] border-2 border-dotted border-zinc-500 justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-slate-900 text-base font-normal font-['Public Sans'] leading-snug">
+                  <div className="text-slate-900 text-base font-normal">
                     9 am – 12 pm
                   </div>
                 </div>
                 <div className="w-[270px] h-[50px] px-[50px] py-3.5 bg-white rounded-[20px] border-2 border-dotted border-zinc-500 justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-slate-900 text-base font-normal font-['Public Sans'] leading-snug">
+                  <div className="text-slate-900 text-base font-normal">
                     12 pm – 5 pm
                   </div>
                 </div>
               </div>
               <div className="flex justify-between">
                 <div className="w-[270px] h-[50px] px-[50px] py-3.5 bg-white rounded-[20px] border-2 border-dotted border-zinc-500 justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-slate-900 text-base font-normal font-['Public Sans'] leading-snug">
+                  <div className="text-slate-900 text-base font-normal">
                     5 pm – 9 pm
                   </div>
                 </div>
                 <div className="w-[270px] h-[50px] px-[50px] py-3.5 bg-white rounded-[20px] border-2 border-dotted border-zinc-500 justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-slate-900 text-base font-normal font-['Public Sans'] leading-snug">
+                  <div className="text-slate-900 text-base font-normal">
                     9 pm – 12 am
                   </div>
                 </div>
