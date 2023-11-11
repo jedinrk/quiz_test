@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FormWrapper } from "./FormWrapper";
+import RadioButtonWithCheckBox from "../RadioButtonWithCheckBox/RadioButtonWithCheckBox";
 
 function UserFormPropertyType() {
-  const [selectedProperty, setSelectedProperty] = useState("Villa");
+  const [selectedProperty, setSelectedProperty] = useState("");
 
   return (
     <FormWrapper
@@ -31,82 +32,28 @@ function UserFormPropertyType() {
             </div>
             <div className="flex flex-col mt-[32px]">
               <div className="flex justify-between">
-                <div
-                  className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${
-                    selectedProperty === "Villa" ? "bg-violet-100" : "bg-white"
-                  } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
-                >
-                  <input
-                    id="property-type"
-                    type="checkbox"
-                    value="Villa"
-                    checked={selectedProperty === 'Villa'}
-                    onChange={(e) => setSelectedProperty(e.target.value)}
-                    className="w-4 h-4 left-[2px] top-[2px] accent-violet-700 rounded-sm"
-                  ></input>
-                  <label
-                    htmlFor="property-type"
-                    className="text-slate-900 text-base font-normal"
-                  >
-                    Villa
-                  </label>
-                </div>
-                <div
-                  className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${selectedProperty === 'Apartment'? 'bg-violet-100': 'bg-white' } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
-                >
-                  <input
-                    id="property-type"
-                    type="checkbox"
-                    value="Apartment"
-                    checked={selectedProperty === 'Apartment'}
-                    onChange={(e) => setSelectedProperty(e.target.value)}
-                    className="w-4 h-4 left-[2px] top-[2px] accent-violet-700 rounded-sm"
-                  ></input>
-                  <label
-                    htmlFor="property-type"
-                    className="text-slate-900 text-base font-normal"
-                  >
-                    Apartment
-                  </label>
-                </div>
+                <RadioButtonWithCheckBox
+                  label="Villa"
+                  isChecked={selectedProperty === "Villa"}
+                  setSelectedProperty={setSelectedProperty}
+                />
+                <RadioButtonWithCheckBox
+                  label="Apartment"
+                  isChecked={selectedProperty === "Apartment"}
+                  setSelectedProperty={setSelectedProperty}
+                />
               </div>
               <div className="flex justify-between">
-                <div
-                  className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${selectedProperty === 'Townhouse'? 'bg-violet-100': 'bg-white' } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
-                >
-                  <input
-                    id="property-type"
-                    type="checkbox"
-                    value="Townhouse"
-                    checked={selectedProperty === 'Townhouse'}
-                    onChange={(e) => setSelectedProperty(e.target.value)}
-                    className="w-4 h-4 left-[2px] top-[2px] accent-violet-700 rounded-sm"
-                  ></input>
-                  <label
-                    htmlFor="property-type"
-                    className="text-slate-900 text-base font-normal"
-                  >
-                    Townhouse
-                  </label>
-                </div>
-                <div
-                  className={`mb-4 w-[270px] h-[50px] border-dotted pl-6 pr-[50px] py-3.5 ${selectedProperty === 'Other'? 'bg-violet-100': 'bg-white' } rounded-[20px] border-2 border-slate-900 justify-start items-center gap-2.5 inline-flex`}
-                >
-                  <input
-                    id="property-type"
-                    type="checkbox"
-                    value="Other"
-                    checked={selectedProperty === 'Other'}
-                    onChange={(e) => setSelectedProperty(e.target.value)}
-                    className="w-4 h-4 left-[2px] top-[2px] accent-violet-700 rounded-sm"
-                  ></input>
-                  <label
-                    htmlFor="property-type"
-                    className="text-slate-900 text-base font-normal"
-                  >
-                    Other
-                  </label>
-                </div>
+                <RadioButtonWithCheckBox
+                  label="Townhouse"
+                  isChecked={selectedProperty === "Townhouse"}
+                  setSelectedProperty={setSelectedProperty}
+                />
+                <RadioButtonWithCheckBox
+                  label="Other"
+                  isChecked={selectedProperty === "Other"}
+                  setSelectedProperty={setSelectedProperty}
+                />
               </div>
             </div>
           </div>

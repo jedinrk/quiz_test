@@ -3,7 +3,7 @@ import EllipseOne from "../public/ellipselight.svg";
 import NavBar from "./components/Navbar/NavBar";
 import MultiStepForm from "./components/MultiStepForm/MultiStepForm";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import PhoneIcon from "../public/phone_icon.svg";
+import PhoneIcon from "../public/phoneVioletIcon.svg";
 
 export default function Home() {
   return (
