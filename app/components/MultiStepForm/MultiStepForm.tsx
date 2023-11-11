@@ -51,7 +51,6 @@ function MultiStepForm() {
     isFirstStep,
     isLastStep,
     isCompleted,
-    allowNextStep,
     back,
     next,
   } = useMultiStepForm([
@@ -108,7 +107,6 @@ function MultiStepForm() {
               )}
               <button
                 type="submit"
-                disabled={!allowNextStep}
                 className={`flex grow justify-end py-[20px] px-[100px] rounded-br-[18px] text-white text-sm font-bold uppercase
                bg-violet-700 disabled:text-violet-400
                enabled:hover:bg-violet-500 enabled:active:bg-violet-800
