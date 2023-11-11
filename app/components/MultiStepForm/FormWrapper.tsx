@@ -3,7 +3,7 @@ import { ReactNode, ReactSVGElement } from "react";
 type FormWrapperProps = {
   step: string,
   title: string,
-  icon: ReactSVGElement,
+  icon: React.JSX.Element,
   children: ReactNode,
 };
 
