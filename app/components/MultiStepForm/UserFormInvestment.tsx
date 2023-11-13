@@ -8,7 +8,7 @@ const InvestmentIcon = () => (
   <Image src={investmentSvg} alt="Investment Icon" />
 );
 
-function UserFormInvestment() {
+function UserFormInvestment({ investedInUAE, updateData }: any) {
   return (
     <FormWrapper step="06" title="Investment in UAE" icon={<InvestmentIcon />}>
       <div className="flex flex-col">
@@ -23,6 +23,8 @@ function UserFormInvestment() {
                 id="yes"
                 name="experience"
                 value="Yes"
+                checked={investedInUAE}
+                onChange={() => updateData({ investedInUAE: true })}
                 className="w-6 h-6 accent-slate-900"
               ></input>
               <label
@@ -36,6 +38,8 @@ function UserFormInvestment() {
                 id="no"
                 name="experience"
                 value="No"
+                checked={!investedInUAE}
+                onChange={() => updateData({ investedInUAE: false })}
                 className="w-6 h-6 accent-slate-900"
               ></input>
               <label

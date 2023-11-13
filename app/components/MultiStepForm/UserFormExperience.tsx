@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormWrapper } from "./FormWrapper";
 
 import Image from "next/image";
@@ -8,7 +8,7 @@ const ExpereinceIcon = () => (
   <Image src={experienceSvg} alt="Expereince Icon" />
 );
 
-function UserFormExperience() {
+function UserFormExperience({ investedWithAzizi, updateData }: any) {
   return (
     <FormWrapper step="04" title="Experience" icon={<ExpereinceIcon />}>
       <div className="flex flex-col">
@@ -23,6 +23,8 @@ function UserFormExperience() {
                 id="yes"
                 name="experience"
                 value="Yes"
+                checked={investedWithAzizi}
+                onChange={() => updateData({ investedWithAzizi: true })}
                 className="w-6 h-6 accent-slate-900"
               ></input>
               <label
@@ -36,6 +38,8 @@ function UserFormExperience() {
                 id="no"
                 name="experience"
                 value="No"
+                checked={!investedWithAzizi}
+                onChange={() => updateData({ investedWithAzizi: false })}
                 className="w-6 h-6 accent-slate-900"
               ></input>
               <label

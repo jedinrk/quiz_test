@@ -7,8 +7,10 @@ import propertySvg from "../../../public/property.svg";
 
 const PropertyIcon = () => <Image src={propertySvg} alt="PropertyIcon" />;
 
-function UserFormPropertyType() {
-  const [selectedProperty, setSelectedProperty] = useState("");
+function UserFormPropertyType({ propertyType, updateData }: any) {
+  const setSelectedProperty = (selection: string) => {
+    updateData({ propertyType: selection });
+  };
 
   return (
     <FormWrapper step="05" title="Property type" icon={<PropertyIcon />}>
@@ -22,24 +24,24 @@ function UserFormPropertyType() {
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
                   label="Villa"
-                  isChecked={selectedProperty === "Villa"}
+                  isChecked={propertyType === "Villa"}
                   setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Apartment"
-                  isChecked={selectedProperty === "Apartment"}
+                  isChecked={propertyType === "Apartment"}
                   setProperty={setSelectedProperty}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
                   label="Townhouse"
-                  isChecked={selectedProperty === "Townhouse"}
+                  isChecked={propertyType === "Townhouse"}
                   setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Other"
-                  isChecked={selectedProperty === "Other"}
+                  isChecked={propertyType === "Other"}
                   setProperty={setSelectedProperty}
                 />
               </div>

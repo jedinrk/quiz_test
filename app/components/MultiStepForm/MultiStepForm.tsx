@@ -40,18 +40,18 @@ type FormData = {
   phoneNumber: string;
   email: string;
   timeSlot: string;
-  investedBefore: boolean;
+  investedWithAzizi: boolean;
   propertyType: string;
-  hasInvestment: boolean;
+  investedInUAE: boolean;
 };
 
 const initialData: FormData = {
   phoneNumber: "",
   email: "",
   timeSlot: "",
-  investedBefore: false,
+  investedWithAzizi: false,
   propertyType: "",
-  hasInvestment: false,
+  investedInUAE: false,
 };
 
 function MultiStepForm() {
@@ -72,11 +72,11 @@ function MultiStepForm() {
     <UserFormExperience key={4} {...data} updateData={updateData} />,
     <UserFormPropertyType key={5} {...data} updateData={updateData} />,
     <UserFormInvestment key={6} {...data} updateData={updateData} />,
-    <UserFormThankYou key={7} {...data} updateData={updateData} />,
+    <UserFormThankYou key={7} {...data} />,
   ]);
 
   function updateData(fields: Partial<FormData>) {
-    console.log("updateData: ", fields)
+    console.log("updateData: ", fields);
     setData((prev) => {
       return { ...prev, ...fields };
     });
