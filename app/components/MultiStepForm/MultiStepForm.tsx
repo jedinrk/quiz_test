@@ -1,7 +1,12 @@
 "use client";
 
 import { useMultiStepForm } from "@/app/hooks/useMultiStepForm";
-import React, { FormEvent, ReactEventHandler, useState } from "react";
+import React, {
+  FormEvent,
+  ReactEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import UserFormPhone from "./UserFormPhone";
 import UserFormEmail from "./UserFormEmail";
 import UserFormTimeSlot from "./UserFormTimeSlot";
@@ -56,6 +61,7 @@ const initialData: FormData = {
 
 function MultiStepForm() {
   const [data, setData] = useState(initialData);
+  const [nextEnabled, setNextEnabled] = useState(false);
   const {
     steps,
     currentStepIndex,
@@ -88,6 +94,48 @@ function MultiStepForm() {
     next();
   }
 
+  function isNextDisabled() {
+    console.log("isNextDisabled: ", currentStepIndex);
+    switch (currentStepIndex) {
+      case 0:
+        console.log("data.phoneNumber: ", data.phoneNumber);
+        if (data.phoneNumber === "") {
+          console.log("data.phoneNumber is empty");
+          setNextEnabled(false);
+          return;
+        }
+        break;
+      case 1:
+        if (data.email === "") {
+          setNextEnabled(false);
+          return;
+        }
+        break;
+      case 2:
+        if (data.timeSlot === "") {
+          setNextEnabled(false);
+          return;
+        }
+        break;
+      case 4:
+        if (data.propertyType === "") {
+          setNextEnabled(false);
+          return;
+        }
+        break;
+      default:
+        setNextEnabled(true);
+    }
+    console.log("seting NextEnabled: true");
+    setNextEnabled(true);
+  }
+
+  useEffect(isNextDisabled, [currentStepIndex, data]);
+
+  useEffect(() => {
+    console.log("nextEnabled changed : ", nextEnabled);
+  }, [nextEnabled]);
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-[670px] bg-violet-50 rounded-[20px] border-t-2 border-slate-900">
@@ -109,6 +157,7 @@ function MultiStepForm() {
               )}
               <button
                 type="submit"
+                disabled={!nextEnabled}
                 className={`flex grow justify-end py-[20px] px-[100px] rounded-br-[18px] text-white text-sm font-bold uppercase
                bg-violet-700 disabled:text-violet-400
                enabled:hover:bg-violet-500 enabled:active:bg-violet-800 cursor-pointer
