@@ -30,7 +30,7 @@ function UserFormEmail({ email, updateData }: any) {
               placeholder="e-mail"
               value={email}
               onChange={(e) => updateData({ email: e.target.value })}
-              className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 text-slate-900 text-base font-medium ${archivo.className}`}
+              className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 focus:outline-none focus:border-violet-700 text-slate-900 text-base font-medium ${archivo.className}`}
             />
           </div>
         </div>
