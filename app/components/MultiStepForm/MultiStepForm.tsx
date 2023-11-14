@@ -7,6 +7,9 @@ import React, {
   useEffect,
   useState,
 } from "react";
+
+import { Inter } from "next/font/google";
+
 import UserFormPhone from "./UserFormPhone";
 import UserFormEmail from "./UserFormEmail";
 import UserFormTimeSlot from "./UserFormTimeSlot";
@@ -19,9 +22,23 @@ import Image from "next/image";
 import nextSvg from "../../../public/next.svg";
 import prevSvg from "../../../public/previous.svg";
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const NextIcon = () => (
   <Image src={nextSvg} alt="Next Icon" className="ml-[10px]" />
 );
+
+const NextDisabledIcon = () => (
+  <Image
+    src={nextSvg}
+    alt="Next Disabled Icon"
+    className="ml-[10px] opacity-50"
+  />
+);
+
 const PrevIcon = () => (
   <Image src={prevSvg} alt="Previous Icon" className="mr-[10px]" />
 );
@@ -80,6 +97,16 @@ function MultiStepForm() {
     <UserFormInvestment key={6} {...data} updateData={updateData} />,
     <UserFormThankYou key={7} {...data} />,
   ]);
+
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsTooltipVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsTooltipVisible(false);
+  };
 
   function updateData(fields: Partial<FormData>) {
     console.log("updateData: ", fields);
@@ -142,7 +169,7 @@ function MultiStepForm() {
         <form onSubmit={onSubmit}>
           <div>{step}</div>
           {!isCompleted && (
-            <div className="flex justify-between rounded-bl-[18px] rounded-br-[18px]">
+            <div className="relative flex justify-between rounded-bl-[18px] rounded-br-[18px]">
               {!isFirstStep && (
                 <button
                   type="button"
@@ -157,15 +184,27 @@ function MultiStepForm() {
               )}
               <button
                 type="submit"
-                disabled={!nextEnabled}
-                className={`flex grow justify-end py-[20px] px-[100px] rounded-br-[18px] text-white text-sm font-bold uppercase
-               bg-violet-700 disabled:text-violet-400
-               enabled:hover:bg-violet-500 enabled:active:bg-violet-800 cursor-pointer
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className={`group flex grow justify-end py-[20px] px-[100px] rounded-br-[18px] text-sm font-bold uppercase
+               bg-violet-700 ${
+                 nextEnabled
+                   ? `text-white hover:bg-violet-500 active:bg-violet-800`
+                   : `text-violet-400`
+               }
+                cursor-pointer
               ${isFirstStep ? "rounded-bl-[18px]" : ""}`}
               >
                 {isLastStep ? "Finish This Quiz" : "Next"}
-                <NextIcon />
+                {nextEnabled ? <NextIcon /> : <NextDisabledIcon />}
               </button>
+              {!nextEnabled && isTooltipVisible && (
+                <label
+                  className={`absolute top-0 right-0 -translate-y-1/2 translate-x-2 px-2.5 py-[9px] opacity-80 bg-slate-900 rounded-[20px] flex-col justify-center items-center text-white text-xs font-normal ${inter.className}`}
+                >
+                  {"Please complete the current step first"}
+                </label>
+              )}
             </div>
           )}
         </form>
