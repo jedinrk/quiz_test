@@ -116,9 +116,8 @@ function MultiStepForm() {
   }
 
   function onSubmit(e: FormEvent) {
-    console.log("onSubmit");
     e.preventDefault();
-    next();
+    if (nextEnabled) next();
   }
 
   function isNextDisabled() {
