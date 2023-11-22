@@ -8,6 +8,8 @@ import React, {
   useState,
 } from "react";
 
+import { gsap } from "gsap";
+
 import { Inter } from "next/font/google";
 
 import UserFormPhone from "./UserFormPhone";
@@ -115,9 +117,39 @@ function MultiStepForm() {
     });
   }
 
+  function onPreviousButton() {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    const currentStep = `#step-${currentStepIndex}`;
+    const prevStep = `#step-${currentStepIndex - 1}`;
+    console.log(`currentStep: `, currentStep);
+    console.log(`nextStep: `, prevStep);
+
+    tl.to(currentStep, { y: `0%` }, 0).to(
+      prevStep,
+      {
+        y: `${100 * (currentStepIndex - 1)}%`,
+      },
+      0
+    );
+
+    back();
+  }
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (nextEnabled) next();
+    if (nextEnabled) {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      const currentStep = `#step-${currentStepIndex}`;
+      const nextStep = `#step-${currentStepIndex + 1}`;
+
+      tl.to(currentStep, { y: `${-100 * (currentStepIndex + 1)}%` }, 0).to(
+        nextStep,
+        { y: "-100%" },
+        0
+      );
+      next();
+    }
   }
 
   function isNextDisabled() {
@@ -164,15 +196,28 @@ function MultiStepForm() {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="w-[670px] bg-violet-50 rounded-[20px] border-t-2 border-slate-900">
+      <div className="relative w-[670px] bg-violet-50 rounded-[20px] border-t-2 border-slate-900 overflow-hidden">
         <form onSubmit={onSubmit}>
-          <div>{step}</div>
+          <div className="relative">
+            {steps.map((_step, index) => {
+              return (
+                <div
+                  id={`step-${index}`}
+                  key={index}
+                  className={`${index === 0 ? "relative" : "absolute"}`}
+                >
+                  {_step}
+                </div>
+              );
+            })}
+          </div>
+          {/* <div id="container-step">{step}</div> */}
           {!isCompleted && (
             <div className="relative flex justify-between rounded-bl-[18px] rounded-br-[18px]">
               {!isFirstStep && (
                 <button
                   type="button"
-                  onClick={back}
+                  onClick={onPreviousButton}
                   className="flex grow justify-start py-[20px] px-[100px] rounded-bl-[18px] text-white text-sm font-bold uppercase
                 bg-violet-700 disabled:text-violet-400 cursor-pointer
                 enabled:hover:bg-violet-500 enabled:active:bg-violet-800"
