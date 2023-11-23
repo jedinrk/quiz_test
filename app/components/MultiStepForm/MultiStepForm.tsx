@@ -123,18 +123,19 @@ function MultiStepForm() {
     const currentStep = `#step-${currentStepIndex}`;
     const prevStep = `#step-${currentStepIndex - 1}`;
     console.log(`currentStep: `, currentStep);
-    console.log(`nextStep: `, prevStep);
+    console.log(`prevStep: `, prevStep);
 
     tl.to(currentStep, { y: `0%` }, 0).to(
       prevStep,
       {
-        y: `${100 * (currentStepIndex - 1)}%`,
+        y: `${currentStepIndex==1?'0%':'-100%'}`,
       },
       0
     );
 
     back();
   }
+
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (nextEnabled) {
@@ -204,7 +205,7 @@ function MultiStepForm() {
                 <div
                   id={`step-${index}`}
                   key={index}
-                  className={`${index === 0 ? "relative" : "absolute"}`}
+                  className={`${index === 0 ? "relative" : "absolute"} w-full h-full`}
                 >
                   {_step}
                 </div>
