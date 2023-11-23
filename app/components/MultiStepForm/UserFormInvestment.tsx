@@ -3,6 +3,8 @@ import { FormWrapper } from "./FormWrapper";
 
 import Image from "next/image";
 import investmentSvg from "../../../public/investment.svg";
+import RadioChecked from "../../assets/ic_radio_checked.svg";
+import RadioUnchecked from "../../assets/ic_radio_unchecked.svg";
 
 const InvestmentIcon = () => (
   <Image src={investmentSvg} alt="Investment Icon" />
@@ -18,30 +20,22 @@ function UserFormInvestment({ investedInUAE, updateData }: any) {
               Have you invested in UAE before?
             </div>
             <div className="mt-[32px] flex items-center">
-              <input
-                type="radio"
-                id="yes"
-                name="experience"
-                value="Yes"
-                checked={investedInUAE}
-                onChange={() => updateData({ investedInUAE: true })}
-                className="w-6 h-6 accent-slate-900"
-              ></input>
+              <Image
+                src={investedInUAE ? RadioChecked : RadioUnchecked}
+                alt="Radio Icon Checked"
+                onClick={() => updateData({ investedInUAE: true })}
+              />
               <label
                 htmlFor="yes"
                 className="ml-[10px] mr-[40px] text-slate-900 text-base font-normal"
               >
                 Yes
               </label>
-              <input
-                type="radio"
-                id="no"
-                name="experience"
-                value="No"
-                checked={!investedInUAE}
-                onChange={() => updateData({ investedInUAE: false })}
-                className="w-6 h-6 accent-slate-900"
-              ></input>
+              <Image
+                src={!investedInUAE ? RadioChecked : RadioUnchecked}
+                alt="Radio Icon UnChecked"
+                onClick={() => updateData({ investedInUAE: false })}
+              />
               <label
                 htmlFor="no"
                 className="ml-[10px] text-slate-900 text-base font-normal"
