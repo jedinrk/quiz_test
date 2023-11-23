@@ -3,6 +3,8 @@ import { FormWrapper } from "./FormWrapper";
 
 import Image from "next/image";
 import experienceSvg from "../../../public/experience.svg";
+import RadioChecked from "../../assets/ic_radio_checked.svg";
+import RadioUnchecked from "../../assets/ic_radio_unchecked.svg";
 
 const ExpereinceIcon = () => (
   <Image src={experienceSvg} alt="Expereince Icon" />
@@ -18,30 +20,25 @@ function UserFormExperience({ investedWithAzizi, updateData }: any) {
               Have you invested with AZIZI before?
             </div>
             <div className="mt-[32px] flex items-center">
-              <input
-                type="radio"
-                id="yes"
-                name="experience"
-                value="Yes"
-                checked={investedWithAzizi}
-                onChange={() => updateData({ investedWithAzizi: true })}
-                className="w-6 h-6 accent-slate-900"
-              ></input>
+              <Image
+                src={investedWithAzizi ? RadioChecked : RadioUnchecked}
+                alt="Radio Icon Checked"
+                onClick={() => updateData({ investedWithAzizi: true })}
+              />
+
               <label
                 htmlFor="yes"
                 className="ml-[10px] mr-[40px] text-slate-900 text-base font-normal"
               >
                 Yes
               </label>
-              <input
-                type="radio"
-                id="no"
-                name="experience"
-                value="No"
-                checked={!investedWithAzizi}
-                onChange={() => updateData({ investedWithAzizi: false })}
-                className="w-6 h-6 accent-slate-900"
-              ></input>
+
+              <Image
+                src={!investedWithAzizi ? RadioChecked : RadioUnchecked}
+                alt="Radio Icon UnChecked"
+                onClick={() => updateData({ investedWithAzizi: false })}
+              />
+
               <label
                 htmlFor="no"
                 className="ml-[10px] text-slate-900 text-base font-normal"
