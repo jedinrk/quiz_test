@@ -1,0 +1,78 @@
+/* Circle styles */
+.circle {
+  @apply relative w-[60px] h-[60px] shadow-[inset_0_0_0_2px_#3B82F6] rounded-[50%];
+}
+
+/* Animation styles */
+.circle.animation {
+  @apply animate-[filling_0.2s_ease-in_1.2s_forwards];
+}
+
+.cover1,
+.cover2 {
+  @apply absolute overflow-hidden w-6/12 h-full;
+}
+
+.cover1 {
+  @apply left-1/2 before:w-full before:h-[200%] before:origin-[0_25%] before:bg-violet-50;
+}
+
+.cover1:before,
+.cover2:before {
+  @apply absolute content-[""];
+}
+
+
+.circle.animation .cover1:before {
+  @apply animate-[draw_0.3s_linear_0.4s_forwards];
+}
+
+.cover2::before {
+  @apply left-[-10%] w-[110%] h-[120%] bg-violet-50 origin-[100%_40%];
+}
+
+.circle.animation .cover2::before {
+  @apply animate-[draw_0.3s_ease-out_0.7s_forwards];
+}
+
+.check {
+  @apply opacity-0 select-none w-[60px] h-[60px];
+}
+
+.circle.animation .check {
+  @apply animate-[check_0.2s_ease-in-out_1.3s_forwards];
+}
+
+/* Keyframe animations */
+@keyframes draw {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes filling {
+  0% {
+    box-shadow: inset 0 0 0 9px #3B82F6;
+  }
+  100% {
+    box-shadow: inset 0 0 0 50px #3B82F6;
+  }
+}
+
+@keyframes check {
+  0% {
+    transform: scale(0.5) rotate(30deg);
+    opacity: 0;
+  }
+  90% {
+    transform: scale(1.3) rotate(-15deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
