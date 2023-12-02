@@ -1,28 +1,20 @@
-"use client";
-
-import { useMultiStepForm } from "@/app/hooks/useMultiStepForm";
 import React, {
+  Children,
   FormEvent,
-  ReactEventHandler,
+  ReactNode,
   useEffect,
   useState,
 } from "react";
-
+import {
+  MultiStepFormProvider,
+  useMultiStepContext,
+} from "../../contexts/MultiStepFormContext";
 import { gsap } from "gsap";
-
-import { Inter } from "next/font/google";
-
-import UserFormPhone from "./UserFormPhone";
-import UserFormEmail from "./UserFormEmail";
-import UserFormTimeSlot from "./UserFormTimeSlot";
-import UserFormExperience from "./UserFormExperience";
-import UserFormPropertyType from "./UserFormPropertyType";
-import UserFormInvestment from "./UserFormInvestment";
-import UserFormThankYou from "./UserFormThankYou";
 
 import Image from "next/image";
 import nextSvg from "../../../public/next.svg";
 import prevSvg from "../../../public/previous.svg";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,47 +37,16 @@ const PrevIcon = () => (
   <Image src={prevSvg} alt="Previous Icon" className="mr-[10px]" />
 );
 
-type FormData = {
-  phoneNumber: string;
-  email: string;
-  timeSlot: string;
-  investedWithAzizi: boolean;
-  propertyType: string;
-  investedInUAE: boolean;
-};
-
-const initialData: FormData = {
-  phoneNumber: "",
-  email: "",
-  timeSlot: "",
-  investedWithAzizi: false,
-  propertyType: "",
-  investedInUAE: false,
-};
-
-function MultiStepForm() {
-  const [data, setData] = useState(initialData);
+const MultiStepForm = ({ children }: { children: ReactNode }) => {
+  const { currentStepIndex, next, back, formData } = useMultiStepContext();
   const [nextEnabled, setNextEnabled] = useState(false);
-  const {
-    steps,
-    currentStepIndex,
-    step,
-    isFirstStep,
-    isLastStep,
-    isCompleted,
-    back,
-    next,
-  } = useMultiStepForm([
-    <UserFormPhone key={1} {...data} updateData={updateData} />,
-    <UserFormEmail key={2} {...data} updateData={updateData} />,
-    <UserFormTimeSlot key={3} {...data} updateData={updateData} />,
-    <UserFormExperience key={4} {...data} updateData={updateData} />,
-    <UserFormPropertyType key={5} {...data} updateData={updateData} />,
-    <UserFormInvestment key={6} {...data} updateData={updateData} />,
-    <UserFormThankYou key={7} {...data} />,
-  ]);
-
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  const totalSteps = React.Children.count(children);
+  const isFirstStep = currentStepIndex === 0;
+  const isLastStep = currentStepIndex === totalSteps - 2;
+  const isCompleted = currentStepIndex === totalSteps - 1;
+
 
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);
@@ -94,13 +55,6 @@ function MultiStepForm() {
   const handleMouseLeave = () => {
     setIsTooltipVisible(false);
   };
-
-  function updateData(fields: Partial<FormData>) {
-    console.log("updateData: ", fields);
-    setData((prev) => {
-      return { ...prev, ...fields };
-    });
-  }
 
   function onPreviousButton() {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -113,7 +67,7 @@ function MultiStepForm() {
     tl.to(currentStep, { y: `0%` }, 0).to(
       prevStep,
       {
-        y: `${currentStepIndex==1?'0%':'-100%'}`,
+        y: `${currentStepIndex == 1 ? "0%" : "-100%"}`,
       },
       0
     );
@@ -142,27 +96,27 @@ function MultiStepForm() {
     console.log("isNextDisabled: ", currentStepIndex);
     switch (currentStepIndex) {
       case 0:
-        console.log("data.phoneNumber: ", data.phoneNumber);
-        if (data.phoneNumber === "") {
-          console.log("data.phoneNumber is empty");
+        console.log("formData.phoneNumber: ", formData.phoneNumber);
+        if (formData.phoneNumber === "") {
+          console.log("formData.phoneNumber is empty");
           setNextEnabled(false);
           return;
         }
         break;
       case 1:
-        if (data.email === "") {
+        if (formData.email === "") {
           setNextEnabled(false);
           return;
         }
         break;
       case 2:
-        if (data.timeSlot === "") {
+        if (formData.timeSlot === "") {
           setNextEnabled(false);
           return;
         }
         break;
       case 4:
-        if (data.propertyType === "") {
+        if (formData.propertyType === "") {
           setNextEnabled(false);
           return;
         }
@@ -174,28 +128,33 @@ function MultiStepForm() {
     setNextEnabled(true);
   }
 
-  useEffect(isNextDisabled, [currentStepIndex, data]);
+  useEffect(isNextDisabled, [currentStepIndex, formData]);
 
   useEffect(() => {
     console.log("nextEnabled changed : ", nextEnabled);
   }, [nextEnabled]);
+
+  const renderStep = () => {
+    const stepArray = React.Children.toArray(children);
+    return stepArray[currentStepIndex] || null;
+  };
 
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-[670px] bg-violet-50 rounded-[20px] border-t-2 border-slate-900 overflow-hidden">
         <form onSubmit={onSubmit}>
           <div className="relative">
-            {steps.map((_step, index) => {
-              return (
-                <div
-                  id={`step-${index}`}
-                  key={index}
-                  className={`${index === 0 ? "relative" : "absolute"} w-full h-full`}
-                >
-                  {_step}
-                </div>
-              );
-            })}
+            {Children.map(children, (child, index) => (
+              <div
+                id={`step-${index}`}
+                key={index}
+                className={`${
+                  index === 0 ? "relative" : "absolute"
+                } w-full h-full`}
+              >
+                {child}
+              </div>
+            ))}
           </div>
           {/* <div id="container-step">{step}</div> */}
           {!isCompleted && (
@@ -241,6 +200,6 @@ function MultiStepForm() {
       </div>
     </div>
   );
-}
+};
 
 export default MultiStepForm;

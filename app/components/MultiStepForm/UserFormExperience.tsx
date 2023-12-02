@@ -5,12 +5,14 @@ import Image from "next/image";
 import experienceSvg from "../../../public/experience.svg";
 import RadioChecked from "../../assets/ic_radio_checked.svg";
 import RadioUnchecked from "../../assets/ic_radio_unchecked.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const ExpereinceIcon = () => (
   <Image src={experienceSvg} alt="Expereince Icon" />
 );
 
-function UserFormExperience({ investedWithAzizi, updateData }: any) {
+function UserFormExperience() {
+  const { formData, setFormData } = useMultiStepContext();
   return (
     <FormWrapper step="04" title="Experience" icon={<ExpereinceIcon />}>
       <div className="flex flex-col">
@@ -21,9 +23,11 @@ function UserFormExperience({ investedWithAzizi, updateData }: any) {
             </div>
             <div className="mt-[32px] flex items-center">
               <Image
-                src={investedWithAzizi ? RadioChecked : RadioUnchecked}
+                src={formData.investedWithAzizi ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon Checked"
-                onClick={() => updateData({ investedWithAzizi: true })}
+                onClick={() =>
+                  setFormData({ ...formData, investedWithAzizi: true })
+                }
               />
 
               <label
@@ -34,9 +38,13 @@ function UserFormExperience({ investedWithAzizi, updateData }: any) {
               </label>
 
               <Image
-                src={!investedWithAzizi ? RadioChecked : RadioUnchecked}
+                src={
+                  !formData.investedWithAzizi ? RadioChecked : RadioUnchecked
+                }
                 alt="Radio Icon UnChecked"
-                onClick={() => updateData({ investedWithAzizi: false })}
+                onClick={() =>
+                  setFormData({ ...formData, investedWithAzizi: false })
+                }
               />
 
               <label

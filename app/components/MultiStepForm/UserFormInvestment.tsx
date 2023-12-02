@@ -5,12 +5,14 @@ import Image from "next/image";
 import investmentSvg from "../../../public/investment.svg";
 import RadioChecked from "../../assets/ic_radio_checked.svg";
 import RadioUnchecked from "../../assets/ic_radio_unchecked.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const InvestmentIcon = () => (
   <Image src={investmentSvg} alt="Investment Icon" />
 );
 
-function UserFormInvestment({ investedInUAE, updateData }: any) {
+function UserFormInvestment() {
+  const { formData, setFormData } = useMultiStepContext();
   return (
     <FormWrapper step="06" title="Investment in UAE" icon={<InvestmentIcon />}>
       <div className="flex flex-col">
@@ -21,9 +23,11 @@ function UserFormInvestment({ investedInUAE, updateData }: any) {
             </div>
             <div className="mt-[32px] flex items-center">
               <Image
-                src={investedInUAE ? RadioChecked : RadioUnchecked}
+                src={formData.investedInUAE ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon Checked"
-                onClick={() => updateData({ investedInUAE: true })}
+                onClick={() =>
+                  setFormData({ ...formData, investedInUAE: true })
+                }
               />
               <label
                 htmlFor="yes"
@@ -32,9 +36,11 @@ function UserFormInvestment({ investedInUAE, updateData }: any) {
                 Yes
               </label>
               <Image
-                src={!investedInUAE ? RadioChecked : RadioUnchecked}
+                src={!formData.investedInUAE ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon UnChecked"
-                onClick={() => updateData({ investedInUAE: false })}
+                onClick={() =>
+                  setFormData({ ...formData, investedInUAE: false })
+                }
               />
               <label
                 htmlFor="no"

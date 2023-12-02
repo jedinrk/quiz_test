@@ -4,12 +4,15 @@ import RadioButton from "../RadioButton/RadioButton";
 
 import Image from "next/image";
 import clockSvg from "../../../public/clock.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const ClockIcon = () => <Image src={clockSvg} alt="Clock Icon" />;
 
-function UserFormTimeSlot({ timeSlot, updateData }: any) {
+function UserFormTimeSlot() {
+  const { formData, setFormData } = useMultiStepContext();
+
   const updateTimeSlot = (timeslot: string) => {
-    updateData({ timeSlot: timeslot });
+    setFormData({ ...formData, timeSlot: timeslot });
   };
 
   return (
@@ -28,24 +31,24 @@ function UserFormTimeSlot({ timeSlot, updateData }: any) {
               <div className="mb-[10px] flex justify-between">
                 <RadioButton
                   label={"9 am – 12 pm"}
-                  isChecked={timeSlot === "9 am – 12 pm"}
+                  isChecked={formData.timeSlot === "9 am – 12 pm"}
                   setSelectedTimeSlot={updateTimeSlot}
                 />
                 <RadioButton
                   label={"12 pm – 5 pm"}
-                  isChecked={timeSlot === "12 pm – 5 pm"}
+                  isChecked={formData.timeSlot === "12 pm – 5 pm"}
                   setSelectedTimeSlot={updateTimeSlot}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButton
                   label={"5 pm – 9 pm"}
-                  isChecked={timeSlot === "5 pm – 9 pm"}
+                  isChecked={formData.timeSlot === "5 pm – 9 pm"}
                   setSelectedTimeSlot={updateTimeSlot}
                 />
                 <RadioButton
                   label={"9 pm – 12 am"}
-                  isChecked={timeSlot === "9 pm – 12 am"}
+                  isChecked={formData.timeSlot === "9 pm – 12 am"}
                   setSelectedTimeSlot={updateTimeSlot}
                 />
               </div>

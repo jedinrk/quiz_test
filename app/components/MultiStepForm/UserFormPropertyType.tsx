@@ -4,12 +4,15 @@ import RadioButtonWithCheckBox from "../RadioButtonWithCheckBox/RadioButtonWithC
 
 import Image from "next/image";
 import propertySvg from "../../../public/property.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const PropertyIcon = () => <Image src={propertySvg} alt="PropertyIcon" />;
 
-function UserFormPropertyType({ propertyType, updateData }: any) {
+function UserFormPropertyType() {
+  const { formData, setFormData } = useMultiStepContext();
+
   const setSelectedProperty = (selection: string) => {
-    updateData({ propertyType: selection });
+    setFormData({ ...formData, propertyType: selection });
   };
 
   return (
@@ -24,24 +27,24 @@ function UserFormPropertyType({ propertyType, updateData }: any) {
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
                   label="Villa"
-                  isChecked={propertyType === "Villa"}
+                  isChecked={formData.propertyType === "Villa"}
                   setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Apartment"
-                  isChecked={propertyType === "Apartment"}
+                  isChecked={formData.propertyType === "Apartment"}
                   setProperty={setSelectedProperty}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
                   label="Townhouse"
-                  isChecked={propertyType === "Townhouse"}
+                  isChecked={formData.propertyType === "Townhouse"}
                   setProperty={setSelectedProperty}
                 />
                 <RadioButtonWithCheckBox
                   label="Other"
-                  isChecked={propertyType === "Other"}
+                  isChecked={formData.propertyType === "Other"}
                   setProperty={setSelectedProperty}
                 />
               </div>

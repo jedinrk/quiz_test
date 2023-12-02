@@ -7,6 +7,7 @@ import { Archivo } from "next/font/google";
 import Image from "next/image";
 import phoneSvg from "../../../public/phoneIcon.svg";
 import uaeFlag from "../../assets/flag_uae.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const PhoneIcon = () => <Image src={phoneSvg} alt="Phone Icon" />;
 const UaeFlag = () => <Image src={uaeFlag} alt="UAE Flag" />;
@@ -16,7 +17,9 @@ const archivo = Archivo({
   display: "swap",
 });
 
-function UserFormPhone({ phoneNumber, updateData }: any) {
+function UserFormPhone() {
+  const { formData, setFormData } = useMultiStepContext();
+
   const [selectedCountryCode, setSelectedCountryCode] = useState({
     value: "+971",
     label: "+971",
@@ -81,8 +84,10 @@ function UserFormPhone({ phoneNumber, updateData }: any) {
                 className={`text-slate-900 text-base font-medium ${archivo.className}`}
                 type="tel"
                 inputMode="numeric"
-                value={phoneNumber}
-                onChange={(e) => updateData({ phoneNumber: e.target.value })}
+                value={formData.phoneNumber}
+                onChange={(e) =>
+                  setFormData({ ...formData, phoneNumber: e.target.value })
+                }
                 maxLength={10} // Limit the input to 17 characters
               />
               {/* <div className="relative">

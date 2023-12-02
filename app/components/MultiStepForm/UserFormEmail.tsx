@@ -4,6 +4,7 @@ import { Archivo } from "next/font/google";
 
 import Image from "next/image";
 import emailSvg from "../../../public/emailIcon.svg";
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const EmailIcon = () => <Image src={emailSvg} alt="EmailIcon" />;
 
@@ -12,7 +13,8 @@ const archivo = Archivo({
   display: "swap",
 });
 
-function UserFormEmail({ email, updateData }: any) {
+function UserFormEmail() {
+  const { formData, setFormData } = useMultiStepContext();
   return (
     <FormWrapper step="02" title="Email" icon={<EmailIcon />}>
       <div className="flex flex-col">
@@ -28,8 +30,10 @@ function UserFormEmail({ email, updateData }: any) {
             <input
               type="email"
               placeholder="e-mail"
-              value={email}
-              onChange={(e) => updateData({ email: e.target.value })}
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 focus:outline-none focus:border-violet-700 text-slate-900 text-base font-medium ${archivo.className}`}
             />
           </div>
