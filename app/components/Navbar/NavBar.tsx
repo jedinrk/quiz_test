@@ -14,7 +14,7 @@ const playfair = Playfair_Display({
 
 const NavBar = () => {
   return (
-    <nav className="flex justify-between items-center	pl-[64px] pr-[64px] pt-[20px] pb-[20px] bg-slate-900/50">
+    <nav className="sticky top-0 left-0 w-full flex justify-between items-center	pl-[64px] pr-[64px] pt-[20px] pb-[20px] bg-slate-900/50">
       {/* opacity-50 */}
       <span className={`text-4xl font-bold ${playfair.className}`}>AZIZI</span>
       <ul className="flex items-center m-0">
