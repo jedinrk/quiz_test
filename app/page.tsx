@@ -8,7 +8,7 @@ import PhoneIcon from "../public/phoneVioletIcon.svg";
 import warningSvg from "../public/warning.svg";
 import BackgroundComponent from "./components/Background/BackgroundComponent";
 
-import MultiStepForm from "./components/MultiStepForm/NMultiStepForm";
+import MultiStepForm from "./components/MultiStepForm/MultiStepForm";
 import UserFormEmail from "./components/MultiStepForm/UserFormEmail";
 import UserFormExperience from "./components/MultiStepForm/UserFormExperience";
 import UserFormTimeSlot from "./components/MultiStepForm/UserFormTimeSlot";
