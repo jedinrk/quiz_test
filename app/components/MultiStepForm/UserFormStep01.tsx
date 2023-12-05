@@ -77,7 +77,8 @@ function UserFormPhone() {
             >
               <UaeFlag />
               <Select
-                inputId="react-select"
+                id="selectbox"
+                instanceId="selectbox"
                 className={`ml-[8px] mr-[10px] text-slate-900 text-base font-bold`}
                 options={countryCodes}
                 value={selectedCountryCode}
