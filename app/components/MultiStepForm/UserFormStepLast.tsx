@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import AnimCheck from "../AnimCheck/AnimCheck";
 import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
