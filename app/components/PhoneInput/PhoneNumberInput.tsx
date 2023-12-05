@@ -1,35 +1,83 @@
-import React, { useState } from "react";
-import { Archivo } from "next/font/google";
+import React, { useState, ChangeEvent, useRef, useEffect } from "react";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  display: "swap",
-});
+const PhoneNumberInput: React.FC = () => {
+  const [phoneDigits, setPhoneDigits] = useState<string[]>([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-const PhoneNumberInput = () => {
-  const [phoneNumber, setPhoneNumber] = useState("_ _  _ _ _  _ _  _ _"); // Initial underscores with groups
+  useEffect(() => {
+    inputRefs.current[0]?.focus();
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    // Remove non-digit characters
-    const numericValue = inputValue.replace(/\D/g, "");
-    // Split the numeric value into groups of 2, then join with underscores
-    const formattedValue = numericValue
-      .match(/.{1,2}/g)
-      ?.join("  ")
-      .padEnd(17, "_"); // Ensure a maximum length of 17 characters with underscores
+  const handleInputChange = (index: number, e: any): void => {
+    console.log("handleInputChange");
+    const { value } = e.target;
 
-    setPhoneNumber(formattedValue === undefined? " ": formattedValue);
+    if (value.match(/[0-9]/)) {
+      const updatedDigits = [...phoneDigits];
+      updatedDigits[index] = value;
+      setPhoneDigits(updatedDigits);
+
+      if (index < phoneDigits.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    } else if (value === "") {
+      const updatedDigits = [...phoneDigits];
+      updatedDigits[index] = "";
+      setPhoneDigits(updatedDigits);
+
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (index: number, event: any) => {
+    const { value } = event.target;
+    console.log("User pressed: ", {
+      key: event.key,
+      value: event.target.value,
+    });
+
+    if (event.key === "Backspace" && value === "") {
+      const updatedDigits = [...phoneDigits];
+      updatedDigits[index] = "";
+      setPhoneDigits(updatedDigits);
+
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+    }
   };
 
   return (
-    <input
-      className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 text-slate-900 text-base font-medium ${archivo.className}`}
-      type="text"
-      value={phoneNumber}
-      onChange={handleChange}
-      maxLength={17} // Limit the input to 17 characters
-    />
+    <div className="flex items-center justify-center">
+      {phoneDigits.map((digit, index) => (
+        <input
+          dir={`${digit? 'ltr': 'rtl'}`}
+          key={index}
+          className={`w-3 m-0.5 text-slate-900 text-base font-medium ${
+            digit ? "border-none" : "border-b-2 border-zinc-500"
+          } focus:outline-none`}
+          type="tel"
+          inputMode="numeric"
+          maxLength={1}
+          value={digit}
+          ref={(el) => (inputRefs.current[index] = el)}
+          onChange={(e) => handleInputChange(index, e)}
+          onKeyDown={(e) => handleKeyDown(index, e)}
+        />
+      ))}
+    </div>
   );
 };
 

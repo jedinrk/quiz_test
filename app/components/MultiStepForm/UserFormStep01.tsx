@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Select from "react-select";
 
 import { FormWrapper } from "./FormWrapper";
 import { Archivo } from "next/font/google";
 
 import PhoneIcon from "../../../public/phoneIcon.svg";
+import ArrowDown from "../../../public/arrowDown.svg";
 import Image from "next/image";
 
 import uaeFlag from "../../assets/flag_uae.svg";
 import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
+import PhoneNumberInput from "../PhoneInput/PhoneNumberInput";
 
 const UaeFlag = () => <Image src={uaeFlag} alt="UAE Flag" />;
 
@@ -20,16 +21,16 @@ const archivo = Archivo({
 function UserFormPhone() {
   const { formData, setFormData } = useMultiStepContext();
 
-  const [selectedCountryCode, setSelectedCountryCode] = useState({
-    value: "+971",
-    label: "+971",
-  });
+  // const [selectedCountryCode, setSelectedCountryCode] = useState({
+  //   value: "+971",
+  //   label: "+971",
+  // });
 
-  const countryCodes = [
-    { value: "+1", label: "+1" },
-    { value: "+971", label: "+971" },
-    // Add more country codes as needed
-  ];
+  // const countryCodes = [
+  //   { value: "+1", label: "+1" },
+  //   { value: "+971", label: "+971" },
+  //   // Add more country codes as needed
+  // ];
 
   // const [phoneInput, setPhoneInput] = useState("");
   // const [displayedPhoneNumber, setDisplayedPhoneNumber] =
@@ -52,9 +53,9 @@ function UserFormPhone() {
   //   formatPhoneNumber(input);
   // };
 
-  const handleCountryCodeChange = (selectedOption: any) => {
-    setSelectedCountryCode(selectedOption);
-  };
+  // const handleCountryCodeChange = (selectedOption: any) => {
+  //   setSelectedCountryCode(selectedOption);
+  // };
 
   return (
     <FormWrapper
@@ -76,17 +77,13 @@ function UserFormPhone() {
               className={`w-[550px] h-[62px] p-[20px] mt-[32px] flex items-center border-dotted bg-white rounded-[20px] border-2 border-zinc-500 focus:outline-none focus:border-violet-700`}
             >
               <UaeFlag />
-              <Select
-                id="selectbox"
-                instanceId="selectbox"
-                className={`ml-[8px] mr-[10px] text-slate-900 text-base font-bold`}
-                options={countryCodes}
-                value={selectedCountryCode}
-                onChange={handleCountryCodeChange}
-                unstyled
-              />
-              <input
-                className={`text-slate-900 text-base font-medium ${archivo.className}`}
+              <label className="ml-[8px] text-slate-900 text-base font-bold font-['Public Sans'] leading-snug">
+                +971
+              </label>
+              <Image className="ml-[4px] mr-[10px]" src={ArrowDown} alt="Arrow Down" />
+              <PhoneNumberInput />
+              {/* <input
+                className={`border-b-2 text-slate-900 text-base font-medium ${archivo.className}`}
                 type="tel"
                 inputMode="numeric"
                 value={formData.phoneNumber}
@@ -94,23 +91,7 @@ function UserFormPhone() {
                   setFormData({ ...formData, phoneNumber: e.target.value })
                 }
                 maxLength={10} // Limit the input to 17 characters
-              />
-              {/* <div className="relative">
-                <input
-                  className={`absolute top-0 left-0 opacity-0	w-full h-full cursor-text z-0`}
-                  id="phoneNumber"
-                  type="tel"
-                  inputMode="numeric"
-                  value={phoneInput}
-                  onChange={handlePhoneNumberChange}
-                  maxLength={10} // Limit the input to 17 characters
-                />
-                <div
-                  className={`relative z-1 text-slate-900 text-base font-medium  ${archivo.className} leading-snug tracking-widest`}
-                >
-                  {displayedPhoneNumber}
-                </div>
-              </div> */}
+              /> */}
             </div>
           </div>
         </div>
