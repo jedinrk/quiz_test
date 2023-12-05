@@ -38,7 +38,14 @@ const PrevIcon = () => (
 );
 
 const MultiStepForm = ({ children }: { children: ReactNode }) => {
-  const { currentStepIndex, next, back, formData } = useMultiStepContext();
+  const {
+    currentStepIndex,
+    next,
+    back,
+    formData,
+    containerHeight,
+    parentHeight,
+  } = useMultiStepContext();
   const [nextEnabled, setNextEnabled] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
@@ -46,7 +53,6 @@ const MultiStepForm = ({ children }: { children: ReactNode }) => {
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 2;
   const isCompleted = currentStepIndex === totalSteps - 1;
-
 
   const handleMouseEnter = () => {
     setIsTooltipVisible(true);
@@ -143,14 +149,14 @@ const MultiStepForm = ({ children }: { children: ReactNode }) => {
     <div className="flex flex-col items-center">
       <div className="relative w-[670px] bg-violet-50 rounded-[20px] border-t-2 border-slate-900 overflow-hidden">
         <form onSubmit={onSubmit}>
-          <div className="relative">
+          <div className={`relative ${parentHeight}`}>
             {Children.map(children, (child, index) => (
               <div
                 id={`step-${index}`}
                 key={index}
                 className={`${
                   index === 0 ? "relative" : "absolute"
-                } w-full h-full`}
+                } w-full ${containerHeight(index)} ${index !== currentStepIndex && "invisible"}`}
               >
                 {child}
               </div>
