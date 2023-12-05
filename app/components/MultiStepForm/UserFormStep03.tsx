@@ -8,48 +8,44 @@ import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const ClockIcon = () => <Image src={clockSvg} alt="Clock Icon" />;
 
-function UserFormTimeSlot() {
+function UserFormStep03() {
   const { formData, setFormData } = useMultiStepContext();
 
-  const updateTimeSlot = (timeslot: string) => {
-    setFormData({ ...formData, timeSlot: timeslot });
+  const setProgrammerType = (selection: string) => {
+    setFormData({ ...formData, programmerType: selection });
   };
-
+ 
   return (
-    <FormWrapper
-      step="03"
-      title="Best time to be contacted"
-      icon={<ClockIcon />}
-    >
+    <FormWrapper step="03" title="Name it" icon={<ClockIcon />}>
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal mv-[32px]">
-              We will only contact you at your selected time range in GST
+              What do you call a programmer who doesn't like to share?
             </div>
             <div className="mt-[32px] flex flex-col">
               <div className="mb-[10px] flex justify-between">
                 <RadioButton
-                  label={"9 am – 12 pm"}
-                  isChecked={formData.timeSlot === "9 am – 12 pm"}
-                  setSelectedTimeSlot={updateTimeSlot}
+                  label={"Selfish Coder"}
+                  isChecked={formData.programmerType === "Selfish Coder"}
+                  setSelectedTimeSlot={setProgrammerType}
                 />
                 <RadioButton
-                  label={"12 pm – 5 pm"}
-                  isChecked={formData.timeSlot === "12 pm – 5 pm"}
-                  setSelectedTimeSlot={updateTimeSlot}
+                  label={"Code Hoarder"}
+                  isChecked={formData.programmerType === "Code Hoarder"}
+                  setSelectedTimeSlot={setProgrammerType}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButton
-                  label={"5 pm – 9 pm"}
-                  isChecked={formData.timeSlot === "5 pm – 9 pm"}
-                  setSelectedTimeSlot={updateTimeSlot}
+                  label={"Program Scrooge"}
+                  isChecked={formData.programmerType === "Program Scrooge"}
+                  setSelectedTimeSlot={setProgrammerType}
                 />
                 <RadioButton
-                  label={"9 pm – 12 am"}
-                  isChecked={formData.timeSlot === "9 pm – 12 am"}
-                  setSelectedTimeSlot={updateTimeSlot}
+                  label={"Shareware Genius"}
+                  isChecked={formData.programmerType === "Shareware Genius"}
+                  setSelectedTimeSlot={setProgrammerType}
                 />
               </div>
             </div>
@@ -60,4 +56,4 @@ function UserFormTimeSlot() {
   );
 }
 
-export default UserFormTimeSlot;
+export default UserFormStep03;

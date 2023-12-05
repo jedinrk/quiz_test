@@ -9,7 +9,7 @@ import React, {
 type FormData = {
   phoneNumber: string;
   email: string;
-  timeSlot: string;
+  programmerType: string;
   investedWithAzizi: boolean;
   propertyType: string;
   investedInUAE: boolean;
@@ -50,7 +50,7 @@ export const MultiStepFormProvider = ({
   const [formData, setFormData] = useState({
     phoneNumber: "",
     email: "",
-    timeSlot: "",
+    programmerType: "",
     investedWithAzizi: false,
     propertyType: "",
     investedInUAE: false,
