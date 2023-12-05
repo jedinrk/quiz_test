@@ -23,7 +23,9 @@ const WarningIcon = () => <Image src={warningSvg} alt="Warning Icon" />;
 export default function Home() {
   return (
     <main className="relative">
-      <BackgroundComponent />
+      <div className="sticky top-0 left-0 -z-50">
+        <BackgroundComponent />
+      </div>
       <NavBar />
       <Breadcrumb />
       <div className="flex flex-col items-center my-[64px]">
@@ -47,23 +49,25 @@ export default function Home() {
           </label>
         </div>
       </div>
-      <MultiStepFormProvider>
-        <MultiStepForm>
-          <UserFormStep01 />
-          <UserFormStep02 />
-          <UserFormStep03 />
-          <UserFormStep04 />
-          <UserFormStep05 />
-          <UserFormStep06 />
-          <UserFormStepLast />
-        </MultiStepForm>
-      </MultiStepFormProvider>
-      <div className="mt-[34px] flex flex-col items-center ">
-        <label className="max-w-[420px] text-center text-gray-300 text-[13px] font-normal">
-          We value your privacy at AZIZI. Your contact information is never
-          shared with any third party and will remain internal where you can opt
-          out at any time.
-        </label>
+      <div className="sticky top-1/2 bottom-1/2">
+        <MultiStepFormProvider>
+          <MultiStepForm>
+            <UserFormStep01 />
+            <UserFormStep02 />
+            <UserFormStep03 />
+            <UserFormStep04 />
+            <UserFormStep05 />
+            <UserFormStep06 />
+            <UserFormStepLast />
+          </MultiStepForm>
+        </MultiStepFormProvider>
+        <div className="mt-[34px] mb-[164px] flex flex-col items-center ">
+          <label className="max-w-[420px] text-center text-gray-300 text-[13px] font-normal">
+            We value your privacy at AZIZI. Your contact information is never
+            shared with any third party and will remain internal where you can
+            opt out at any time.
+          </label>
+        </div>
       </div>
     </main>
   );
