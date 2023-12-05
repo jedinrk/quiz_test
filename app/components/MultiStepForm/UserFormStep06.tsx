@@ -20,8 +20,8 @@ function UserFormStep06() {
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal mv-[32px]">
               Is debugging like being the detective in a crime movie where
-              you're also the murderer, and you have to find clues that you left
-              for yourself? Yes or no?
+              you&apos;re also the murderer, and you have to find clues that you
+              left for yourself? Yes or no?
             </div>
             <div className="mt-[32px] flex items-center">
               <Image

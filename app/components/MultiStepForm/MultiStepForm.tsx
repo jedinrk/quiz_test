@@ -116,13 +116,13 @@ const MultiStepForm = ({ children }: { children: ReactNode }) => {
         }
         break;
       case 2:
-        if (formData.timeSlot === "") {
+        if (formData.programmerType === "") {
           setNextEnabled(false);
           return;
         }
         break;
       case 4:
-        if (formData.propertyType === "") {
+        if (formData.algoThought === "") {
           setNextEnabled(false);
           return;
         }

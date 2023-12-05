@@ -27,7 +27,7 @@ function UserFormStep03() {
         <div className="flex flex-col">
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal mv-[32px]">
-              What do you call a programmer who doesn't like to share?
+              What do you call a programmer who doesn&apos;t like to share?
             </div>
             <div className="mt-[32px] flex flex-col">
               <div className="mb-[10px] flex justify-between">
