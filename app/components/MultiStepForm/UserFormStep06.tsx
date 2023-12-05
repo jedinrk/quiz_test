@@ -11,23 +11,23 @@ const InvestmentIcon = () => (
   <Image src={investmentSvg} alt="Investment Icon" />
 );
 
-function UserFormInvestment() {
+function UserFormStep06() {
   const { formData, setFormData } = useMultiStepContext();
   return (
-    <FormWrapper step="06" title="Investment in UAE" icon={<InvestmentIcon />}>
+    <FormWrapper step="06" title="Be honest" icon={<InvestmentIcon />}>
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal mv-[32px]">
-              Have you invested in UAE before?
+              Is debugging like being the detective in a crime movie where
+              you're also the murderer, and you have to find clues that you left
+              for yourself? Yes or no?
             </div>
             <div className="mt-[32px] flex items-center">
               <Image
-                src={formData.investedInUAE ? RadioChecked : RadioUnchecked}
+                src={formData.honesty ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon Checked"
-                onClick={() =>
-                  setFormData({ ...formData, investedInUAE: true })
-                }
+                onClick={() => setFormData({ ...formData, honesty: true })}
               />
               <label
                 htmlFor="yes"
@@ -36,11 +36,9 @@ function UserFormInvestment() {
                 Yes
               </label>
               <Image
-                src={!formData.investedInUAE ? RadioChecked : RadioUnchecked}
+                src={!formData.honesty ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon UnChecked"
-                onClick={() =>
-                  setFormData({ ...formData, investedInUAE: false })
-                }
+                onClick={() => setFormData({ ...formData, honesty: false })}
               />
               <label
                 htmlFor="no"
@@ -56,4 +54,4 @@ function UserFormInvestment() {
   );
 }
 
-export default UserFormInvestment;
+export default UserFormStep06;

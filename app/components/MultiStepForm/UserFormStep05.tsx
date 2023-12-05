@@ -8,44 +8,48 @@ import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
 const PropertyIcon = () => <Image src={propertySvg} alt="PropertyIcon" />;
 
-function UserFormPropertyType() {
+function UserFormStep05() {
   const { formData, setFormData } = useMultiStepContext();
 
-  const setSelectedProperty = (selection: string) => {
-    setFormData({ ...formData, propertyType: selection });
+  const setAlgoThought = (selection: string) => {
+    setFormData({ ...formData, algoThought: selection });
   };
 
   return (
-    <FormWrapper step="05" title="Property type" icon={<PropertyIcon />}>
+    <FormWrapper step="05" title="Guess the answer" icon={<PropertyIcon />}>
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal">
-              What are you looking for? Choose as many options as you feel
+              What did the algorithm say to the dataset?
             </div>
             <div className="flex flex-col mt-[32px]">
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
-                  label="Villa"
-                  isChecked={formData.propertyType === "Villa"}
-                  setProperty={setSelectedProperty}
+                  label="You complete me"
+                  isChecked={formData.algoThought === "You complete me"}
+                  setProperty={setAlgoThought}
                 />
                 <RadioButtonWithCheckBox
-                  label="Apartment"
-                  isChecked={formData.propertyType === "Apartment"}
-                  setProperty={setSelectedProperty}
+                  label="Sorry, you're not my type"
+                  isChecked={
+                    formData.algoThought === "Sorry, you're not my type"
+                  }
+                  setProperty={setAlgoThought}
                 />
               </div>
               <div className="flex justify-between">
                 <RadioButtonWithCheckBox
-                  label="Townhouse"
-                  isChecked={formData.propertyType === "Townhouse"}
-                  setProperty={setSelectedProperty}
+                  label="Let's loop together"
+                  isChecked={formData.algoThought === "Let's loop together"}
+                  setProperty={setAlgoThought}
                 />
                 <RadioButtonWithCheckBox
-                  label="Other"
-                  isChecked={formData.propertyType === "Other"}
-                  setProperty={setSelectedProperty}
+                  label="We need to sort things out"
+                  isChecked={
+                    formData.algoThought === "We need to sort things out"
+                  }
+                  setProperty={setAlgoThought}
                 />
               </div>
             </div>
@@ -56,4 +60,4 @@ function UserFormPropertyType() {
   );
 }
 
-export default UserFormPropertyType;
+export default UserFormStep05;

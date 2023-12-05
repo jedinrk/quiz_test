@@ -11,22 +11,23 @@ const ExpereinceIcon = () => (
   <Image src={experienceSvg} alt="Expereince Icon" />
 );
 
-function UserFormExperience() {
+function UserFormStep04() {
   const { formData, setFormData } = useMultiStepContext();
   return (
-    <FormWrapper step="04" title="Experience" icon={<ExpereinceIcon />}>
+    <FormWrapper step="04" title="Check your empathy" icon={<ExpereinceIcon />}>
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-col mt-[24px] mb-[44px]">
             <div className="w-[400px] text-zinc-500 text-base font-normal mv-[32px]">
-              Have you invested with AZIZI before?
+              Why did the computer keep its drink on the windowsill? Because it
+              had too many Windows?
             </div>
             <div className="mt-[32px] flex items-center">
               <Image
-                src={formData.investedWithAzizi ? RadioChecked : RadioUnchecked}
+                src={formData.empathy ? RadioChecked : RadioUnchecked}
                 alt="Radio Icon Checked"
                 onClick={() =>
-                  setFormData({ ...formData, investedWithAzizi: true })
+                  setFormData({ ...formData, empathy: true })
                 }
               />
 
@@ -39,11 +40,11 @@ function UserFormExperience() {
 
               <Image
                 src={
-                  !formData.investedWithAzizi ? RadioChecked : RadioUnchecked
+                  !formData.empathy ? RadioChecked : RadioUnchecked
                 }
                 alt="Radio Icon UnChecked"
                 onClick={() =>
-                  setFormData({ ...formData, investedWithAzizi: false })
+                  setFormData({ ...formData, empathy: false })
                 }
               />
 
@@ -61,4 +62,4 @@ function UserFormExperience() {
   );
 }
 
-export default UserFormExperience;
+export default UserFormStep04;

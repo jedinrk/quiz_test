@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import AnimCheck from "../AnimCheck/AnimCheck";
 import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 
-function UserFormThankYou() {
+function UserFormStepLast() {
   const { currentStepIndex } = useMultiStepContext();
 
   return (
@@ -12,8 +12,12 @@ function UserFormThankYou() {
       <div className="mt-[10px] text-slate-900 text-2xl font-extrabold">
         Thank you for answers!
       </div>
+      <div className="mt-[16px] w-[400px] text-center text-slate-900 text-base font-normal leading-snug">
+        Happy coding, and let’s your programming prowess shines brighter than a
+        well-commented code!
+      </div>
     </div>
   );
 }
 
-export default UserFormThankYou;
+export default UserFormStepLast;

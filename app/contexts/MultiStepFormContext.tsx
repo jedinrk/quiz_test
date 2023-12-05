@@ -10,9 +10,9 @@ type FormData = {
   phoneNumber: string;
   email: string;
   programmerType: string;
-  investedWithAzizi: boolean;
-  propertyType: string;
-  investedInUAE: boolean;
+  empathy: boolean;
+  algoThought: string;
+  honesty: boolean;
 };
 
 interface MultiStepContextProps {
@@ -51,9 +51,9 @@ export const MultiStepFormProvider = ({
     phoneNumber: "",
     email: "",
     programmerType: "",
-    investedWithAzizi: false,
-    propertyType: "",
-    investedInUAE: false,
+    empathy: false,
+    algoThought: "",
+    honesty: false,
   });
 
   const next = () => {
