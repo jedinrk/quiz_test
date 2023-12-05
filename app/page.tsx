@@ -9,18 +9,14 @@ import warningSvg from "../public/warning.svg";
 import BackgroundComponent from "./components/Background/BackgroundComponent";
 
 import MultiStepForm from "./components/MultiStepForm/MultiStepForm";
-import UserFormEmail from "./components/MultiStepForm/UserFormEmail";
-import UserFormExperience from "./components/MultiStepForm/UserFormExperience";
-import UserFormTimeSlot from "./components/MultiStepForm/UserFormTimeSlot";
+import UserFormStep01 from "./components/MultiStepForm/UserFormStep01";
+import UserFormStep02 from "./components/MultiStepForm/UserFormStep02";
+import UserFormStep03 from "./components/MultiStepForm/UserFormStep03";
+import UserFormStep04 from "./components/MultiStepForm/UserFormStep04";
+import UserFormStep05 from "./components/MultiStepForm/UserFormStep05";
+import UserFormStep06 from "./components/MultiStepForm/UserFormStep06";
+import UserFormStepLast from "./components/MultiStepForm/UserFormStepLast";
 import { MultiStepFormProvider } from "./contexts/MultiStepFormContext";
-import UserFormPhone from "./components/MultiStepForm/UserFormPhone";
-import UserFormInvestment from "./components/MultiStepForm/UserFormInvestment";
-import UserFormPropertyType from "./components/MultiStepForm/UserFormPropertyType";
-import UserFormThankYou from "./components/MultiStepForm/UserFormThankYou";
-
-// const UserFormEmail: React.FC = () => <div>UserFormEmail</div>;
-// const UserFormTimeSlot: React.FC = () => <div>UserFormTimeSlot</div>;
-// const UserFormExperience: React.FC = () => <div>UserFormExperience</div>;
 
 const WarningIcon = () => <Image src={warningSvg} alt="Warning Icon" />;
 
@@ -53,13 +49,13 @@ export default function Home() {
       </div>
       <MultiStepFormProvider>
         <MultiStepForm>
-          <UserFormPhone/>
-          <UserFormEmail />
-          <UserFormTimeSlot />
-          <UserFormExperience />
-          <UserFormPropertyType/>
-          <UserFormInvestment/>
-          <UserFormThankYou/>
+          <UserFormStep01 />
+          <UserFormStep02 />
+          <UserFormStep03 />
+          <UserFormStep04 />
+          <UserFormStep05 />
+          <UserFormStep06 />
+          <UserFormStepLast />
         </MultiStepForm>
       </MultiStepFormProvider>
       <div className="mt-[34px] flex flex-col items-center ">
