@@ -14,9 +14,9 @@ const PhoneNumberInput: React.FC = () => {
   ]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  useEffect(() => {
-    inputRefs.current[0]?.focus();
-  }, []);
+  // useEffect(() => {
+  //   inputRefs.current[0]?.focus();
+  // }, []);
 
   const handleInputChange = (index: number, e: any): void => {
     console.log("handleInputChange");

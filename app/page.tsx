@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import BackgroundComponent from "./components/Background/BackgroundComponent";
 import NavBar from "./components/Navbar/NavBar";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import PhoneIcon from "../public/phoneVioletIcon.svg";
 
+import PhoneIcon from "../public/phoneVioletIcon.svg";
 import warningSvg from "../public/warning.svg";
-import BackgroundComponent from "./components/Background/BackgroundComponent";
 
 import MultiStepForm from "./components/MultiStepForm/MultiStepForm";
 import UserFormStep01 from "./components/MultiStepForm/UserFormStep01";
@@ -17,18 +20,32 @@ import UserFormStep05 from "./components/MultiStepForm/UserFormStep05";
 import UserFormStep06 from "./components/MultiStepForm/UserFormStep06";
 import UserFormStepLast from "./components/MultiStepForm/UserFormStepLast";
 import { MultiStepFormProvider } from "./contexts/MultiStepFormContext";
+import { useEffect } from "react";
 
 const WarningIcon = () => <Image src={warningSvg} alt="Warning Icon" />;
 
-export default function Home() {
+function Home() {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.create({
+      trigger: "#multiStepContainer",
+      start: "top 25%",
+      end: "bottom 75%",
+      pin: "#multiStepContainer",
+    });
+  }, []);
+
   return (
     <main className="relative">
       <div className="sticky top-0 left-0 -z-50">
         <BackgroundComponent />
       </div>
-      <NavBar />
-      <Breadcrumb />
-      <div className="flex flex-col items-center my-[64px]">
+      <section>
+        <NavBar />
+        <Breadcrumb />
+      </section>
+      <section className="flex flex-col items-center mt-[64px]">
         <h2 className="text-center text-white text-[40px] font-medium">
           Congrats!
         </h2>
@@ -48,27 +65,33 @@ export default function Home() {
             Please do the following before your call:
           </label>
         </div>
-      </div>
-      <div className="sticky top-1/2 bottom-1/2">
+      </section>
+      <section id="multiStepContainer" className="mt-[64px] mb-[34px]">
         <MultiStepFormProvider>
-          <MultiStepForm>
-            <UserFormStep01 />
-            <UserFormStep02 />
-            <UserFormStep03 />
-            <UserFormStep04 />
-            <UserFormStep05 />
-            <UserFormStep06 />
-            <UserFormStepLast />
-          </MultiStepForm>
+          <div id="multiStep">
+            <MultiStepForm>
+              <UserFormStep01 />
+              <UserFormStep02 />
+              <UserFormStep03 />
+              <UserFormStep04 />
+              <UserFormStep05 />
+              <UserFormStep06 />
+              <UserFormStepLast />
+            </MultiStepForm>
+          </div>
         </MultiStepFormProvider>
-        <div className="mt-[34px] mb-[164px] flex flex-col items-center ">
+      </section>
+      <section>
+        <div className="mb-[164px] flex flex-col items-center ">
           <label className="max-w-[420px] text-center text-gray-300 text-[13px] font-normal">
             We value your privacy at AZIZI. Your contact information is never
             shared with any third party and will remain internal where you can
             opt out at any time.
           </label>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
+
+export default Home;
