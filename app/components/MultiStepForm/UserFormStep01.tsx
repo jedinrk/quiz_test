@@ -19,44 +19,6 @@ const archivo = Archivo({
 });
 
 function UserFormPhone() {
-  const { formData, setFormData } = useMultiStepContext();
-
-  // const [selectedCountryCode, setSelectedCountryCode] = useState({
-  //   value: "+971",
-  //   label: "+971",
-  // });
-
-  // const countryCodes = [
-  //   { value: "+1", label: "+1" },
-  //   { value: "+971", label: "+971" },
-  //   // Add more country codes as needed
-  // ];
-
-  // const [phoneInput, setPhoneInput] = useState("");
-  // const [displayedPhoneNumber, setDisplayedPhoneNumber] =
-  //   useState("__ ___ __ __"); // Initial format
-
-  // const formatPhoneNumber = (number: string) => {
-  //   let formattedNumber = "__ ___ __ __";
-
-  //   for (let i = 0; i < number.length; i++) {
-  //     formattedNumber = formattedNumber.replace("_", number.charAt(i));
-  //   }
-
-  //   setDisplayedPhoneNumber(formattedNumber);
-  // };
-
-  // const handlePhoneNumberChange = (e: any) => {
-  //   const input = e.target.value.replace(/\D/g, "").slice(0, 10); // Allowing only 10 digits
-  //   setPhoneInput(input);
-  //   updateData({ phoneNumber: input });
-  //   formatPhoneNumber(input);
-  // };
-
-  // const handleCountryCodeChange = (selectedOption: any) => {
-  //   setSelectedCountryCode(selectedOption);
-  // };
-
   return (
     <FormWrapper
       step="01"
@@ -80,18 +42,12 @@ function UserFormPhone() {
               <label className="ml-[8px] text-slate-900 text-base font-bold font-['Public Sans'] leading-snug">
                 +971
               </label>
-              <Image className="ml-[4px] mr-[10px]" src={ArrowDown} alt="Arrow Down" />
+              <Image
+                className="ml-[4px] mr-[10px]"
+                src={ArrowDown}
+                alt="Arrow Down"
+              />
               <PhoneNumberInput />
-              {/* <input
-                className={`border-b-2 text-slate-900 text-base font-medium ${archivo.className}`}
-                type="tel"
-                inputMode="numeric"
-                value={formData.phoneNumber}
-                onChange={(e) =>
-                  setFormData({ ...formData, phoneNumber: e.target.value })
-                }
-                maxLength={10} // Limit the input to 17 characters
-              /> */}
             </div>
           </div>
         </div>

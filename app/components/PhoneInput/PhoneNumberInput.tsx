@@ -1,6 +1,8 @@
+import { useMultiStepContext } from "@/app/contexts/MultiStepFormContext";
 import React, { useState, ChangeEvent, useRef, useEffect } from "react";
 
 const PhoneNumberInput: React.FC = () => {
+  const { formData, setFormData } = useMultiStepContext();
   const [phoneDigits, setPhoneDigits] = useState<string[]>([
     "",
     "",
@@ -14,9 +16,20 @@ const PhoneNumberInput: React.FC = () => {
   ]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // useEffect(() => {
-  //   inputRefs.current[0]?.focus();
-  // }, []);
+  useEffect(() => {
+    // Check if all elements in the array are either empty strings or numbers
+    let allAreNumbers = true;
+    for (let i = 0; i < phoneDigits.length; i++) {
+      if (phoneDigits[i] === "" || isNaN(Number(phoneDigits[i]))) {
+        allAreNumbers = false;
+        break;
+      }
+    }
+
+    // Concatenate the array elements into a single string if all are numbers
+    const phoneNumber = allAreNumbers ? phoneDigits.join("") : "";
+    setFormData({ ...formData, phoneNumber });
+  }, [phoneDigits]);
 
   const handleInputChange = (index: number, e: any): void => {
     console.log("handleInputChange");
@@ -63,7 +76,7 @@ const PhoneNumberInput: React.FC = () => {
     <div className="flex items-center justify-center">
       {phoneDigits.map((digit, index) => (
         <input
-          dir={`${digit? 'ltr': 'rtl'}`}
+          dir={`${digit ? "ltr" : "rtl"}`}
           key={index}
           className={`w-3 m-0.5 text-slate-900 text-base font-medium ${
             digit ? "border-none" : "border-b-2 border-zinc-500"
